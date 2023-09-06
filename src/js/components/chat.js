@@ -17,7 +17,8 @@ export default class Chat {
     this.wss = this.wss.bind(this);
     this.wssMessage = this.wssMessage.bind(this);
     this.addWssChat = this.addWssChat.bind(this);
-    this.ws = new WebSocket('ws://localhost:7070/ws');
+    this.ws = new WebSocket('wss://ahj-ws-chat-back.onrender.com/ws');
+    // this.ws = new WebSocket('ws://localhost:7070/ws');
   }
 
   add() {
@@ -29,7 +30,7 @@ export default class Chat {
     this.closeSocket();
   }
 
-  subScribe(el, e) {
+  subScribe(el) {
     const form = document.createElement('form');
     form.className = 'subscribe input';
     form.innerHTML = `<form> 
@@ -38,7 +39,7 @@ export default class Chat {
     </form>`;
 
     el.append(form);
-    form.addEventListener('submit', () => {
+    form.addEventListener('submit', (e) => {
       e.preventDefault();
 
       console.log(e.target);
@@ -59,6 +60,7 @@ export default class Chat {
     const { data } = e;
 
     const message = JSON.parse(data);
+    console.log('От сервера получено ');
     console.log(message);
 
     if (typeof message === 'string') {
