@@ -39,10 +39,8 @@ export default class Chat {
     </form>`;
 
     el.append(form);
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      console.log(e.target);
+    const subScribes = () => {
+      // console.log(e.target);
       const chatMessage = this.element.querySelector('.subscribe__name');
       const chatContent = this.element.querySelector('.chat__content');
       const message = chatMessage.value;
@@ -53,6 +51,14 @@ export default class Chat {
       this.ws.addEventListener('message', this.wss);
 
       this.ws.send(arr);
+    };
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      subScribes();
+    });
+    form.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      subScribes();
     });
   }
 
@@ -185,14 +191,25 @@ export default class Chat {
     el.addEventListener('click', () => {
       el.querySelector('.subscribe__name1').value = '';
     });
-    el.addEventListener('submit', (e) => {
-      e.preventDefault();
+    el.addEventListener('touchstart', () => {
+      el.querySelector('.subscribe__name1').value = '';
+    });
+
+    const addchat = () => {
       this.ws.addEventListener('message', this.wssMessage);
       const type = 'chat';
       const message = el.querySelector('.subscribe__name1').value;
       const arr = [message, type, id];
       this.ws.send(arr);
       el.querySelector('.subscribe__name1').value = '...';
+    };
+    el.addEventListener('submit', (e) => {
+      e.preventDefault();
+      addchat();
+    });
+    el.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      addchat();
     });
   }
 
@@ -204,3 +221,9 @@ export default class Chat {
     });
   }
 }
+
+// почему отключилось при третьем клиенте
+// мобильная адаптация
+// тап для телефона
+// может отключить close для веб-сокета
+// еще поковырять и понять все
