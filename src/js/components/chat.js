@@ -56,10 +56,10 @@ export default class Chat {
       e.preventDefault();
       subScribes();
     });
-    form.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      subScribes();
-    });
+    // form.addEventListener('touchstart', (e) => {
+    //   e.preventDefault();
+    //   subScribes();
+    // });
   }
 
   wss(e) {
@@ -176,11 +176,19 @@ export default class Chat {
 
   addChat(id) {
     // const type1 = 'chat';
+    // const form = document.createElement('form');
+    // form.className = 'subscribe input';
+    // form.innerHTML = `<form>
+    // Выберите псевдоним <input class="input subscribe__name" type="text" name="name" >
+    // <button class="btn subscribe__send submit">Продолжить</button>
+    // </form>`;
+
     const div = document.createElement('div');
     div.className = 'chat';
-    div.innerHTML = `<form class ='form'>
+    div.innerHTML = `
+    <form class ='form'>
     <input class="input subscribe__name1" type="text" name="name" value ="Напиши что-нибудь...">
-        
+    <button class ='buttonSend' >+</button>  
     </form>`;
 
     this.element.querySelector('.window').append(div);
@@ -188,12 +196,12 @@ export default class Chat {
   }
 
   addWssChat(el, id) {
-    el.addEventListener('click', () => {
+    el.querySelector('.subscribe__name1').addEventListener('click', () => {
       el.querySelector('.subscribe__name1').value = '';
     });
-    el.addEventListener('touchstart', () => {
-      el.querySelector('.subscribe__name1').value = '';
-    });
+    // el.addEventListener('touchstart', () => {
+    //   el.querySelector('.subscribe__name1').value = '';
+    // });
 
     const addchat = () => {
       this.ws.addEventListener('message', this.wssMessage);
@@ -207,10 +215,16 @@ export default class Chat {
       e.preventDefault();
       addchat();
     });
-    el.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      addchat();
-    });
+    // variant 2
+    // type = button vmesto submit i
+    // el.querySelector('.buttonSend').addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   addchat();
+    // });
+    // el.addEventListener('touchstart', (e) => {
+    //   e.preventDefault();
+    //   addchat();
+    // });
   }
 
   closeSocket() {

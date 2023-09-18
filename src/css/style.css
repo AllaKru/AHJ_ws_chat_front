@@ -46,12 +46,30 @@ opacity: 0.3;
 .subscribe__name1:hover{
   opacity: 1;
 }
+.form{
+  display: flex;
+  justify-content: space-between;
+}
+.buttonSend{
+  
+  align-items: center;
+  margin-left: 10px;
+  padding: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #574952;
+  border: 1px solid #ced4da;
+  background-color: rgb(212, 183, 199);
+  border-radius: .80rem;
+  outline: none;
+ 
+}
 .chat{
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: end;
-  /* background: linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px);
+    /* background: linear-gradient( #bbb, transparent 1px), linear-gradient( 90deg, #bbb, transparent 1px);
   background-size: 15px 15px; */
   background-color: #ffffff;
   background-position: center center;
